@@ -1,10 +1,9 @@
-package com.trellisconnect.missingFieldIdentification.service;
+package com.trellisconnect.missingFieldIdentification.domain;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 import org.apache.commons.validator.GenericValidator;
-import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,25 +13,11 @@ import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import com.trellisconnect.missingFieldIdentification.constants.Constants;
-import com.trellisconnect.missingFieldIdentification.constants.InsuranceCompany;
-import com.trellisconnect.missingFieldIdentification.domain.Address;
-import com.trellisconnect.missingFieldIdentification.domain.Name;
-import com.trellisconnect.missingFieldIdentification.domain.Operator;
-import com.trellisconnect.missingFieldIdentification.domain.Policy;
-import com.trellisconnect.missingFieldIdentification.domain.PolicyHolder;
 
-@Service
-public class ColoneFieldsAnalyzor implements FindMissingFields {
+public class ColonePolicy extends Policy {
 
-	@Override
-	public boolean canHandle(InsuranceCompany insuranceCompany) {
-		return insuranceCompany == InsuranceCompany.Colone;
-	}
-
-	@Override
-	public ObjectNode findMissingFields(Policy policy) {
-		Optional<Policy> opPolicy = Optional.ofNullable(policy);
-		Optional<PolicyHolder> opPolicyHolder = opPolicy.flatMap(Policy::getPolicyHolder);
+	public ObjectNode findMissingFields() { 
+		Optional<PolicyHolder> opPolicyHolder = policyHolder;
 		ObjectMapper mapper = new ObjectMapper();
 		ObjectNode rootNode = mapper.createObjectNode();
 		ObjectNode policyHolderNode = mapper.createObjectNode();
@@ -50,7 +35,7 @@ public class ColoneFieldsAnalyzor implements FindMissingFields {
 			rootNode.set("policyHolder", policyHolderNode);
 		}
 		ArrayNode operatorNodes = mapper.createArrayNode();
-		Optional<ArrayList<Operator>> opOperator = opPolicy.flatMap(Policy::getOperators);
+		Optional<ArrayList<Operator>> opOperator = operators;
 		opOperator.ifPresentOrElse(ops -> ops.forEach(op -> checkAndSetOperatorFields(mapper, operatorNodes, op)),
 				() -> setDefaultOperatorFields(mapper, operatorNodes));
 		if (!operatorNodes.isEmpty()) {
@@ -174,4 +159,8 @@ public class ColoneFieldsAnalyzor implements FindMissingFields {
 		return isVaild;
 	}
 
+
+	
+	
+	
 }
