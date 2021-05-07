@@ -1,0 +1,47 @@
+{
+  policyId: unique identifier for policy,
+  issuer: company that issued the policy,
+  issueDate: date policy starts, YYYY-MM-DD
+  renewalDate: date policy ends, YYYY-MM-DD
+  policyTermMonths: duration of policy in months, 6 or 12
+  premiumCents: total premium (cost) for the term of the policy, in cents
+  policyHolder: {
+    name: {
+      firstName: policy holder¡¯s first name
+      middleName: policy holder¡¯s middle name
+      lastName: policy holder¡¯s last name
+    }
+    address: {
+      number: street number for policy holder¡¯s address
+      street: street name for policy holder¡¯s address
+      type: street type for policy holder¡¯s address
+      sec_unit_type: secondary unit type for policy holder¡¯s address
+      sec_unit_num: secondary unit number for policy holder¡¯s address
+      city: city for policy holder¡¯s address
+      state: state for policy holder¡¯s address
+      zip: zip code for policy holder¡¯s address
+    }
+    email: policy holder¡¯s email
+    phone: policy holder¡¯s phone number
+  }
+  operators: [{
+    isPrimary: is the operator the policy holder
+    name: {
+      firstName: operator¡¯s first name
+      middleName: operator¡¯s middle name
+      lastName: operator¡¯s last name
+    } 
+    birthdayRange: { 
+      start: start of operator¡¯s birthday range
+      end: end of operator¡¯s birthday range
+      // sometimes we can¡¯t extract the exact birthday 
+      // (e.g. driver is 35 years old), so we save the implied range in this case
+    }
+    gender: operator¡¯s gender
+    driversLicenseStatus: operator¡¯s driver¡¯s license status (valid, invalid, etc.)
+    driversLicenseState: operator¡¯s driver¡¯s license state
+    driversLicenseNumber: operator¡¯s driver¡¯s license number
+    relationship: operator¡¯s relationship to policyholder
+  }
+  ]
+}
