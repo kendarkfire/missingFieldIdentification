@@ -7,6 +7,7 @@
 2. call API with single policy JSON data as request body, it returns the missed fields as JSON string.
   E.g: 
    URL: "http://localhost:8080/api/findMissingFields/colonel"
+   Request Type: put
    Request Body: 
    {
     "policyId": "9afe73e5-77c9-4677-ba5f-1b9e807396a0",
