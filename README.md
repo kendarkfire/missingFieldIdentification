@@ -60,7 +60,7 @@
 
 # TODO
 1. For time limited, it only implemented API for "Colonel", the API for "Ranchers" was created: "http://localhost:8080/api/findMissingFields/ranchers", but it will always return "{}";
-2. For "Colonel", if policy holder's driver license is empty or if the license number contains "XXXX", then it thinks the driver license number is valid, but there should be a fully driver license expression to validate it. 
+2. For "Colonel", if policy holder's driver license is empty or if the license number contains "XXXX", then it thinks the driver license number is not valid, but there should be a fully driver license expression to validate it. 
 
 
 ### Reference Documentation
