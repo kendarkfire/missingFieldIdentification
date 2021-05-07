@@ -7,7 +7,7 @@
 2. call API with single policy JSON data as request body, it returns the missed fields as JSON string.
   E.g:  
    URL: "http://localhost:8080/api/findMissingFields/colonel"  
-   Request Type: put  
+   Request Type: PUT  
    Request Body:  
    
    ```
@@ -51,8 +51,10 @@
   }
   ```
   
-  The policy above missed policy holder's name, it will return: {"policyHolder":{"name":{"firstName":null,"lastName":null}}}, 
-
+  The policy above missed policy holder's name, it will return:
+  ```
+   {"policyHolder":{"name":{"firstName":null,"lastName":null}}}, 
+  ```
 # Test Cases
 1. Run test with command: mvnw test
 
