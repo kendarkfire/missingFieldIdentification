@@ -5,10 +5,11 @@
 # Getting Started
 1. Start App with command: mvnw spring-boot:run, it will start up a local rest api service
 2. call API with single policy JSON data as request body, it returns the missed fields as JSON string.
-  E.g: 
-   URL: "http://localhost:8080/api/findMissingFields/colonel"
-   Request Type: put
-   Request Body: 
+  E.g:  
+   URL: "http://localhost:8080/api/findMissingFields/colonel"  
+   Request Type: put  
+   Request Body:  
+   ```
    {
     "policyId": "9afe73e5-77c9-4677-ba5f-1b9e807396a0",
     "issuer": "nationwide",
@@ -47,6 +48,7 @@
       }
     ]
   }
+  ```
   The policy above missed policy holder's name, it will return: {"policyHolder":{"name":{"firstName":null,"lastName":null}}}, 
 
 # Test Cases
